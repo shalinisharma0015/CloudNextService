@@ -89,6 +89,7 @@ function initMobileMenu(){
 
   const menuBtn = document.getElementById("mMenuBtn");
   const menu = document.getElementById("mMenu");
+  const allParents = document.querySelectorAll('.m-menu .has-sub');
 
   if(menuBtn && menu){
     
@@ -103,12 +104,28 @@ function initMobileMenu(){
 
     window.toggleSub = function(el){
       const parent = el.parentElement;
+
+      // 🔥 CLOSE ALL FIRST
+      allParents.forEach(item => {
+        if(item !== parent){
+          item.classList.remove("open");
+          item.classList.remove("active");
+        }
+      });
+
+      // 🔥 TOGGLE CURRENT
       parent.classList.toggle("open");
+      parent.classList.toggle("active");
     };
+
+    // 🔥 Prevent submenu click affecting parent
+    document.querySelectorAll('.m-menu .sub-menu li').forEach(item => {
+      item.addEventListener('click', function(e){
+        e.stopPropagation();
+      });
+    });
   }
 }
-
-
 // ================= MENU RESPONSIVE =================
 $(document).ready(function(){
 
