@@ -314,3 +314,23 @@ function isCardSliderView(){
   slider.addEventListener("touchstart", () => clearInterval(auto));
 
 })();
+
+/*popup js*/
+window.addEventListener("load", function(){
+  setTimeout(function(){
+    document.getElementById("leadPopup").classList.add("active");
+    document.body.style.overflow = "hidden";
+  }, 800);
+});
+
+function closeLeadPopup(){
+  document.getElementById("leadPopup").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function showThankYou(e){
+  e.preventDefault();
+
+  document.getElementById("formScreen").classList.remove("active");
+  document.getElementById("thankYouScreen").classList.add("active");
+}
